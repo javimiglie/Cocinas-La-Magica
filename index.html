@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocinas La Mágica</title>
+    <script src="https://kit.fontawesome.com/df59baf6b8.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Cocinas La Mágica</h1>
+
+        <input id="search" type="text" class="input" placeholder="Buscar producto">
+
+        <button id="boton-carrito"><i class="fas fa-shopping-cart"></i><span id="contadorCarrito">0</span></button>
+    </header>
+
+
+    <div class="seleccion">
+        <select id="selecPrecio">
+            <option value="all">Orden por Defecto</option>
+            <option value="">De Menor a Mayor Precio</option>
+            <option value="">De Mayor a Menor Precio</option>
+        </select>
+    </div>
+
+    <main id="contenedor-productos">
+
+    </main>
+
+
+    <div class="modal-contenedor">
+        <div class="modal-carrito">
+            <h3>Carrito</h3>
+            <button id="carritoCerrar"><i class="fas fa-times-circle"></i></button>
+            <div id="carrito-contenedor">
+
+            </div>
+            <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+            <div id="terminar" style="display: flex; justify-content: flex-end;"></div>
+        </div>
+    </div>
+
+
+    <script src="./Js/stock.js"></script>
+    <script src="./Js/modal.js"></script>
+    <script src="./Js/script.js"></script>
+</body>
+
+</html>
