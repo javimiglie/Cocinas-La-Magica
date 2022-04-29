@@ -15,9 +15,16 @@ const buscador = document.getElementById('search')
 
 
 //Falta Crear Filtro para ordenar por $
+/*
+selecPrecio.addEventListener("change", () => {
+
+})
+
+
+
 //Falta finalizar compra en carrito
 
-
+*/
 
 
 
@@ -59,9 +66,10 @@ function mostrarProductos(array) {
 
 function agregarAlCarrito(id) {
     let yaEsta = carritoDeCompras.find(item => item.id == id)
+
     if (yaEsta) {
-        yaEsta.cantidad = yaEsta.cantidad + 1
-        document.getElementById(`und${yaEsta.id}`).innerHTML = ` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
+        yaEsta.cantidad++
+            document.getElementById(`und${yaEsta.id}`).innerHTML = ` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
         actualizarCarrito()
     } else {
         let productoAgregar = stockProductos.find(elemento => elemento.id == id)
@@ -98,6 +106,7 @@ function mostrarCarrito(productoAgregar) {
     let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
 
     btnEliminar.addEventListener("click", () => {
+
         if (productoAgregar.cantidad == 1) {
             btnEliminar.parentElement.remove()
             carritoDeCompras = carritoDeCompras.filter(item => item.id != productoAgregar.id)
@@ -128,6 +137,7 @@ function actualizarCarrito() {
 
 function recuperar() {
     let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
+
 
     if (recuperarLS) {
         recuperarLS.forEach(el => {
