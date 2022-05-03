@@ -25,8 +25,14 @@ selecPrecio.addEventListener("change", () => {
 //Falta finalizar compra en carrito
 
 */
-
-
+function bienvenida() {
+    Swal.fire({
+        title: "Bienvenidos a Cocinas La Mágica",
+        text: "A continuación encontrarás todos nuestros modelos de cocinas",
+        imageUrl: "https://cocinaslamagica.com.ar/wp-content/uploads/2021/04/logo-color1.png",
+        confirmButtonText: "Continuar"
+    })
+}
 
 
 
@@ -82,6 +88,15 @@ function agregarAlCarrito(id) {
 
         mostrarCarrito(productoAgregar)
     }
+    Toastify({
+        text: "Has agregado un producto",
+        duration: 2000,
+        gravity: "bottom",
+        position: "right",
+        style: {
+            background: "linear-gradient(62deg, #f51906 0%, #ff9300 100%)",
+        }
+    }).showToast();
 
     localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
 
@@ -107,6 +122,7 @@ function mostrarCarrito(productoAgregar) {
 
     btnEliminar.addEventListener("click", () => {
 
+
         if (productoAgregar.cantidad == 1) {
             btnEliminar.parentElement.remove()
             carritoDeCompras = carritoDeCompras.filter(item => item.id != productoAgregar.id)
@@ -118,7 +134,15 @@ function mostrarCarrito(productoAgregar) {
             actualizarCarrito()
             localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
         }
-
+        Toastify({
+            text: "Has eliminado un producto",
+            duration: 2000,
+            gravity: "bottom",
+            position: "right",
+            style: {
+                background: "linear-gradient(62deg, #f51906 0%, #ff9300 100%)",
+            }
+        }).showToast();
 
     })
 
@@ -149,6 +173,6 @@ function recuperar() {
 
 
 };
-
+bienvenida();
 mostrarProductos(stockProductos);
 recuperar();
