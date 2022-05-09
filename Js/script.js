@@ -1,4 +1,5 @@
-let carritoDeCompras = []
+let carritoDeCompras = [];
+
 
 const contenedorProductos = document.getElementById('contenedor-productos');
 const contenedorCarrito = document.getElementById('carrito-contenedor');
@@ -25,6 +26,14 @@ selecPrecio.addEventListener("change", () => {
 //Falta finalizar compra en carrito
 
 */
+
+
+fetch("./stock.json")
+    .then((resp) => resp.json())
+    .then((data) => productos = data);
+
+
+
 function bienvenida() {
     Swal.fire({
         title: "Bienvenidos a Cocinas La Mágica",
@@ -36,37 +45,72 @@ function bienvenida() {
 
 
 
-function mostrarProductos(array) {
+function mostrarProductos() {
     contenedorProductos.innerHTML = ""
 
-    array.forEach(item => {
+    fetch("./stock.json")
+        .then((resp) => resp.json())
+        .then((data) =>
+            data.forEach(item => {
+                let div = document.createElement("div")
+                div.classList.add("producto")
 
-        let div = document.createElement("div")
-        div.classList.add("producto")
+                div.innerHTML += `
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src=${item.img}>
+                                        <span class="card-title">${item.nombre}</span>
 
-        div.innerHTML += `
-                    <div class="card">
-                        <div class="card-image">
-                            <img src=${item.img}>
-                            <span class="card-title">${item.nombre}</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>${item.descripcion}</p>
+                                        <p> $${item.precio}</p>
+                                        <a  id="agregar${item.id}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+                                    </div>
+                                </div>
+                `
+                contenedorProductos.appendChild(div)
 
-                        </div>
-                        <div class="card-content">
-                            <p>${item.descripcion}</p>
-                            <p> $${item.precio}</p>
-                            <a  id="agregar${item.id}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
-                        </div>
-                    </div>
-    `
-        contenedorProductos.appendChild(div)
+                let btnAgregar = document.getElementById(`agregar${item.id}`)
 
-        let btnAgregar = document.getElementById(`agregar${item.id}`)
+                btnAgregar.addEventListener("click", () => {
+                    agregarAlCarrito(item.id)
+                })
 
-        btnAgregar.addEventListener("click", () => {
-            agregarAlCarrito(item.id)
-        })
+            })
 
-    })
+
+        )
+        /*
+            array.forEach(item => {
+
+                let div = document.createElement("div")
+                div.classList.add("producto")
+
+                div.innerHTML += `
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src=${item.img}>
+                                        <span class="card-title">${item.nombre}</span>
+
+                                    </div>
+                                    <div class="card-content">
+                                        <p>${item.descripcion}</p>
+                                        <p> $${item.precio}</p>
+                                        <a  id="agregar${item.id}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+                                    </div>
+                                </div>
+                `
+                contenedorProductos.appendChild(div)
+
+                let btnAgregar = document.getElementById(`agregar${item.id}`)
+
+                btnAgregar.addEventListener("click", () => {
+                    agregarAlCarrito(item.id)
+                })
+
+            })
+        */
 };
 
 
@@ -78,7 +122,7 @@ function agregarAlCarrito(id) {
             document.getElementById(`und${yaEsta.id}`).innerHTML = ` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
         actualizarCarrito()
     } else {
-        let productoAgregar = stockProductos.find(elemento => elemento.id == id)
+        let productoAgregar = productos.find(elemento => elemento.id == id)
 
         productoAgregar.cantidad = 1
 
@@ -174,5 +218,5 @@ function recuperar() {
 
 };
 bienvenida();
-mostrarProductos(stockProductos);
+mostrarProductos();
 recuperar();
