@@ -51,7 +51,6 @@ selecPrecio.addEventListener('change', () => {
             return 0;
         }))
     }
-
 })
 
 
