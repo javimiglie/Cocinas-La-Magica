@@ -1,11 +1,10 @@
 let carritoDeCompras = [];
+let stock = [];
 
+//Contantes de elementos del DOM
 
 const contenedorProductos = document.getElementById('contenedor-productos');
 const contenedorCarrito = document.getElementById('carrito-contenedor');
-
-//const botonTerminar = document.getElementById('terminar')
-//const finCompra = document.getElementById('fin-compra')
 
 const contadorCarrito = document.getElementById('contadorCarrito');
 const precioTotal = document.getElementById('precioTotal');
@@ -13,27 +12,61 @@ const precioTotal = document.getElementById('precioTotal');
 const selecPrecio = document.getElementById('selecPrecio')
 const buscador = document.getElementById('search')
 
+const btnFinalizar = document.getElementById('btnFinalizar')
+    //const finCompra = document.getElementById('fin-compra')
 
-
-//Falta Crear Filtro para ordenar por $
-/*
-selecPrecio.addEventListener("change", () => {
-
-})
-
-
-
-//Falta finalizar compra en carrito
-
-*/
-
+// Fetch de productos dentro de una variable
 
 fetch("./stock.json")
     .then((resp) => resp.json())
-    .then((data) => productos = data);
+    .then((data) => data.forEach(e => {
+        stock.push(e)
+    }));
+
+console.log(stock);
+
+// Fetch de productos
+
+// fetch("./stock.json")
+//     .then((resp) => resp.json())
+//     .then((data) => productos = data);
+
+selecPrecio.addEventListener('change', () => {
+
+    selecPrecio.value === "asc" ? stock.sort((a, b) => {
+            if (a.precio > b.precio) {
+                return -1;
+            }
+            if (a.precio < b.precio) {
+                return 1;
+            }
+            return 0;
+        }) :
+        stock.sort((a, b) => {
+            if (a.precio < b.precio) {
+                return -1;
+            }
+            if (a.precio > b.precio) {
+                return 1;
+            }
+            return 0;
+        })
+})
 
 
+// Buscador
 
+buscador.addEventListener("input", () => {
+
+
+    if (buscador.value == "") {
+        mostrarProductos(stock)
+    } else {
+        mostrarProductos(stock.filter(element => element.nombre.toLowerCase().includes(buscador)))
+    }
+})
+
+// Bienvenida
 function bienvenida() {
     Swal.fire({
         title: "Bienvenidos a Cocinas La Mágica",
@@ -44,7 +77,7 @@ function bienvenida() {
 }
 
 
-
+//Muestro los Productos en el DOM
 function mostrarProductos() {
     contenedorProductos.innerHTML = ""
 
@@ -77,43 +110,12 @@ function mostrarProductos() {
                     agregarAlCarrito(item.id)
                 })
 
-            })
-
+            }),
 
         )
-        /*
-            array.forEach(item => {
-
-                let div = document.createElement("div")
-                div.classList.add("producto")
-
-                div.innerHTML += `
-                                <div class="card">
-                                    <div class="card-image">
-                                        <img src=${item.img}>
-                                        <span class="card-title">${item.nombre}</span>
-
-                                    </div>
-                                    <div class="card-content">
-                                        <p>${item.descripcion}</p>
-                                        <p> $${item.precio}</p>
-                                        <a  id="agregar${item.id}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
-                                    </div>
-                                </div>
-                `
-                contenedorProductos.appendChild(div)
-
-                let btnAgregar = document.getElementById(`agregar${item.id}`)
-
-                btnAgregar.addEventListener("click", () => {
-                    agregarAlCarrito(item.id)
-                })
-
-            })
-        */
 };
 
-
+//Agregar productos al Carrito
 function agregarAlCarrito(id) {
     let yaEsta = carritoDeCompras.find(item => item.id == id)
 
@@ -122,7 +124,7 @@ function agregarAlCarrito(id) {
             document.getElementById(`und${yaEsta.id}`).innerHTML = ` <p id=und${yaEsta.id}>Und:${yaEsta.cantidad}</p>`
         actualizarCarrito()
     } else {
-        let productoAgregar = productos.find(elemento => elemento.id == id)
+        let productoAgregar = stock.find(elemento => elemento.id == id)
 
         productoAgregar.cantidad = 1
 
@@ -149,7 +151,7 @@ function agregarAlCarrito(id) {
 
 
 
-
+//Muestro los productos del carrito
 function mostrarCarrito(productoAgregar) {
 
     let div = document.createElement("div")
@@ -194,7 +196,7 @@ function mostrarCarrito(productoAgregar) {
 };
 
 
-
+//Actualizar el Carrito
 function actualizarCarrito() {
     contadorCarrito.innerText = carritoDeCompras.reduce((acc, el) => acc + el.cantidad, 0)
     precioTotal.innerText = carritoDeCompras.reduce((acc, el) => acc + (el.precio * el.cantidad), 0)
@@ -202,7 +204,7 @@ function actualizarCarrito() {
 
 
 
-
+// Recupero el carrito del Locas Storage
 function recuperar() {
     let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
 
@@ -214,9 +216,10 @@ function recuperar() {
             actualizarCarrito()
         })
     }
-
-
 };
+
+
+//Llamado de funciones
 bienvenida();
 mostrarProductos();
 recuperar();

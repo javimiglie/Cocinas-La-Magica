@@ -28,8 +28,8 @@
     <div class="seleccion">
         <select id="selecPrecio">
             <option value="all">Orden por Defecto</option>
-            <option value="mayor">De Menor a Mayor Precio</option>
-            <option value="menor">De Mayor a Menor Precio</option>
+            <option value="desc">De Menor a Mayor Precio</option>
+            <option value="asc">De Mayor a Menor Precio</option>
         </select>
     </div>
 
@@ -47,13 +47,17 @@
             </div>
             <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
             <div id="terminar" style="display: flex; justify-content: flex-end;"></div>
+            <button id="btnFinalizar" class="btn btn-primary position-relative" data-bs-toggle="modal" data-target="miModal2">Comprar</button>
         </div>
     </div>
+
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./Js/modal.js"></script>
+    <script src="./Js/tarjeta.js"></script>
     <script src="./Js/script.js"></script>
+
 </body>
 
 </html>
