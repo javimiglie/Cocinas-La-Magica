@@ -1,5 +1,6 @@
-let carritoDeCompras = [];
 let stock = [];
+let carritoDeCompras = [];
+
 
 //Contantes de elementos del DOM
 
@@ -18,39 +19,39 @@ const btnFinalizar = document.getElementById('btnFinalizar')
 // Fetch de productos dentro de una variable
 
 fetch("./stock.json")
-    .then((resp) => resp.json())
-    .then((data) => data.forEach(e => {
-        stock.push(e)
-    }));
-
-console.log(stock);
-
-// Fetch de productos
-
-// fetch("./stock.json")
-//     .then((resp) => resp.json())
-//     .then((data) => productos = data);
-
-selecPrecio.addEventListener('change', () => {
-
-    selecPrecio.value === "asc" ? stock.sort((a, b) => {
-            if (a.precio > b.precio) {
-                return -1;
-            }
-            if (a.precio < b.precio) {
-                return 1;
-            }
-            return 0;
-        }) :
-        stock.sort((a, b) => {
-            if (a.precio < b.precio) {
-                return -1;
-            }
-            if (a.precio > b.precio) {
-                return 1;
-            }
-            return 0;
+    .then(resp => resp.json())
+    .then(data => {
+        data.forEach(el => {
+            stock.push(el)
         })
+        mostrarProductos(stock)
+    })
+
+// Ordenar por precio
+selecPrecio.addEventListener('change', () => {
+    if (selecPrecio.value == 'asc') {
+
+        mostrarProductos(stock.sort((a, b) => {
+            if (a.precio > b.precio) {
+                return -1;
+            }
+            if (a.precio < b.precio) {
+                return 1;
+            }
+            return 0;
+        }))
+    } else if (selecPrecio.value == 'desc') {
+        mostrarProductos(stock.sort((a, b) => {
+            if (a.precio < b.precio) {
+                return -1;
+            }
+            if (a.precio > b.precio) {
+                return 1;
+            }
+            return 0;
+        }))
+    }
+
 })
 
 
@@ -62,9 +63,11 @@ buscador.addEventListener("input", () => {
     if (buscador.value == "") {
         mostrarProductos(stock)
     } else {
-        mostrarProductos(stock.filter(element => element.nombre.toLowerCase().includes(buscador)))
+        mostrarProductos(stock.filter(element => element.nombre.toLowerCase().includes(buscador.value.toLowerCase())))
     }
 })
+
+
 
 // Bienvenida
 function bienvenida() {
@@ -76,44 +79,40 @@ function bienvenida() {
     })
 }
 
+// Mostrar productos
 
-//Muestro los Productos en el DOM
-function mostrarProductos() {
-    contenedorProductos.innerHTML = ""
+function mostrarProductos(array) {
+    contenedorProductos.innerHTML = "";
+    array.forEach(item => {
+        let div = document.createElement("div")
+        div.classList.add("producto")
 
-    fetch("./stock.json")
-        .then((resp) => resp.json())
-        .then((data) =>
-            data.forEach(item => {
-                let div = document.createElement("div")
-                div.classList.add("producto")
+        div.innerHTML +=
+            `
+        <div class="card">
+            <div class="card-image">
+                <img src=${item.img}>
+                <span class="card-title">${item.nombre}</span>
 
-                div.innerHTML += `
-                                <div class="card">
-                                    <div class="card-image">
-                                        <img src=${item.img}>
-                                        <span class="card-title">${item.nombre}</span>
+            </div>
+            <div class="card-content">
+                <p>${item.descripcion}</p>
+                <p> $${item.precio}</p>
+                <a  id="agregar${item.id}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+        </div>
+`
+        contenedorProductos.appendChild(div);
 
-                                    </div>
-                                    <div class="card-content">
-                                        <p>${item.descripcion}</p>
-                                        <p> $${item.precio}</p>
-                                        <a  id="agregar${item.id}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
-                                    </div>
-                                </div>
-                `
-                contenedorProductos.appendChild(div)
+        let btnAgregar = document.getElementById(`agregar${item.id}`)
 
-                let btnAgregar = document.getElementById(`agregar${item.id}`)
+        btnAgregar.addEventListener("click", () => {
+            agregarAlCarrito(item.id)
+        })
 
-                btnAgregar.addEventListener("click", () => {
-                    agregarAlCarrito(item.id)
-                })
 
-            }),
-
-        )
-};
+    })
+}
 
 //Agregar productos al Carrito
 function agregarAlCarrito(id) {
@@ -221,5 +220,4 @@ function recuperar() {
 
 //Llamado de funciones
 bienvenida();
-mostrarProductos();
 recuperar();
