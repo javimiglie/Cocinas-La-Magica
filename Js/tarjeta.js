@@ -141,57 +141,5 @@ formulario.inputCCV.addEventListener('keyup', () => {
     ccv.textContent = formulario.inputCCV.value;
 });
 
-function finalizarCompra() {
-    btnFinalizarCompra.addEventListener('click', (e) => {
-        e.preventDefault(e);
-        numero
-        nombre
-        mes
-        year
-        cvv
-        //Validacion de los inputs
-        if (inputNumero.value == 0 ||
-            formulario.nombre.value == 0 ||
-            formulario.mes.value == 0 ||
-            formulario.year.value == 0 ||
-            formulario.cvv.value == 0) {
-            Toastify({
-                text: "Por favor completa todos los campos",
-                className: "info",
-                position: "left",
-                gravity: "bottom",
-                style: {
-                    background: "red",
-                }
-            }).showToast();
-        } else {
-            //Alerta para confirmar la compra
-            Swal.fire({
-                    title: 'Compra confirmada',
-                    text: 'En 5 días te va a llegar tu producto',
-                    imageUrl: 'https://c.tenor.com/9eFnSCwAiXQAAAAC/gracias-vuelvan-prontos.gif',
-                    imageWidth: 600,
-                    imageHeight: 300,
-                    imageAlt: 'Gracias vuelvas prontos',
-                }).then(() => {
-                    location.href = 'index.html'
-                })
-                //Bucle para vaciar el carrito y local storage
-            for (let i = carritoDeCompras.length; i > 0; i--) {
-                carritoDeCompras.pop();
-                actualizarCarrito();
-                localStorage.clear();
-            }
-
-
-
-
-        };
-
-
-
-    })
-}
-finalizarCompra();
 
 */
