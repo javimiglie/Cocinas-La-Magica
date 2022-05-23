@@ -1,9 +1,9 @@
-[{
+[ {
     "id": 1,
-    "nombre": "Clasic Acero",
+    "nombre": "Grand Chef Espejada",
     "descripcion": "Electrodoméstico",
-    "precio": 52530,
-    "img": "./Media/Clasic-acero.jpg"
+    "precio": 64180,
+    "img": "./Media/Grand-chef-espejada.jpg"
 }, {
     "id": 2,
     "nombre": "Clasic Acero Espejada",
@@ -70,10 +70,5 @@
     "descripcion": "Electrodoméstico",
     "precio": 75328,
     "img": "./Media/Grand-chef-espejada-ag.jpg"
-}, {
-    "id": 13,
-    "nombre": "Grand Chef Espejada",
-    "descripcion": "Electrodoméstico",
-    "precio": 64180,
-    "img": "./Media/Grand-chef-espejada.jpg"
-}]
+}
+]
