@@ -3,77 +3,77 @@
     "nombre": "Clasic Acero",
     "descripcion": "Electrodoméstico",
     "precio": 52530,
-    "img": "./Media/Clasic-acero.jpg"
+    "img": "./Media/cocina1.jpg"
 }, {
     "id": 2,
     "nombre": "Clasic Acero Espejada",
     "descripcion": "Electrodoméstico",
     "precio": 67611,
-    "img": "./Media/Clasic-acero-espejada.jpg"
+    "img": "/Media/cocina2.jpg"
 }, {
     "id": 3,
     "nombre": "Clasic Light",
     "descripcion": "Electrodoméstico",
     "precio": 56712,
-    "img": "./Media/Clasic-light.jpg"
+    "img": "/Media/cocina3.jpg"
 }, {
     "id": 4,
     "nombre": "Eco Acero",
     "descripcion": "Electrodoméstico",
     "precio": 53438,
-    "img": "./Media/Eco-acero.jpg"
+    "img": "/Media/cocina4.jpg"
 }, {
     "id": 5,
     "nombre": "Eco Acero Espejada",
     "descripcion": "Electrodoméstico",
     "precio": 60839,
-    "img": "./Media/Eco-acero-espejada.jpg"
+    "img": "/Media/cocina5.jpg"
 }, {
     "id": 6,
     "nombre": "Eco Light",
     "descripcion": "Electrodoméstico",
     "precio": 51725,
-    "img": "./Media/Eco-light.jpg"
+    "img": "/Media/cocina6.jpg"
 }, {
     "id": 7,
     "nombre": "Euro Acero Espejada",
     "descripcion": "Electrodoméstico",
     "precio": 66567,
-    "img": "./Media/Euro-acero-espejada.jpg"
+    "img": "/Media/cocina7.jpg"
 }, {
     "id": 8,
     "nombre": "Euro Acero Espejada AG",
     "descripcion": "Electrodoméstico",
     "precio": 74613,
-    "img": "./Media/Euro-acero-espejada-ag.jpg"
+    "img": "/Media/cocina8.jpg"
 }, {
     "id": 9,
     "nombre": "Euro Acero Grafito",
     "descripcion": "Electrodoméstico",
     "precio": 60948,
-    "img": "./Media/Euro-acero-grafito.jpg"
+    "img": "/Media/cocina9.jpg"
 }, {
     "id": 10,
     "nombre": "Euro Acero Grafito AG",
     "descripcion": "Electrodoméstico",
     "precio": 74613,
-    "img": "./Media/Euro-acero-grafito-ag.jpg"
+    "img": "/Media/cocina10.jpg"
 }, {
     "id": 11,
     "nombre": "Grand Chef",
     "descripcion": "Electrodoméstico",
     "precio": 59539,
-    "img": "./Media/Grand-chef.jpg"
+    "img": "/Media/cocina11.jpg"
 }, {
     "id": 12,
     "nombre": "Grand Chef Espejada AG",
     "descripcion": "Electrodoméstico",
     "precio": 75328,
-    "img": "./Media/Grand-chef-espejada-ag.jpg"
+    "img": "/Media/cocina12.jpg"
 }, {
     "id": 13,
     "nombre": "Grand Chef Espejada",
     "descripcion": "Electrodoméstico",
     "precio": 64180,
-    "img": "./Media/Grand-chef-espejada.jpg"
+    "img": "/Media/cocina13.jpg"
 }]
