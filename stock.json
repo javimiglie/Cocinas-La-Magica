@@ -1,4 +1,10 @@
 [{
+    "id": 1,
+    "nombre": "Clasic Acero",
+    "descripcion": "Electrodoméstico",
+    "precio": 52530,
+    "img": "./Media/Clasic-acero.jpg"
+}, {
     "id": 2,
     "nombre": "Clasic Acero Espejada",
     "descripcion": "Electrodoméstico",
@@ -10,12 +16,6 @@
     "descripcion": "Electrodoméstico",
     "precio": 56712,
     "img": "./Media/Clasic-light.jpg"
-}, {
-    "id": 1,
-    "nombre": "Clasic Acero",
-    "descripcion": "Electrodoméstico",
-    "precio": 52530,
-    "img": "./Media/Clasic-acero.jpg"
 }, {
     "id": 4,
     "nombre": "Eco Acero",
