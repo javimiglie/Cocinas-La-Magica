@@ -2,7 +2,7 @@ let stock = [];
 let carritoDeCompras = [];
 
 
-//Contantes de elementos del DOM
+//Constantes de elementos del DOM
 
 const contenedorProductos = document.getElementById('contenedor-productos');
 const contenedorCarrito = document.getElementById('carrito-contenedor');
@@ -29,6 +29,7 @@ fetch("./stock.json")
 
 // Ordenar por precio
 selecPrecio.addEventListener('change', () => {
+
     if (selecPrecio.value == 'asc') {
 
         mostrarProductos(stock.sort((a, b) => {
@@ -50,9 +51,20 @@ selecPrecio.addEventListener('change', () => {
             }
             return 0;
         }))
+    } else if (selecPrecio.value == `defecto`) {
+        mostrarProductos(stock.sort((a, b) => {
+            if (a.id < b.id) {
+                return -1;
+            }
+            if (a.id > b.id) {
+                return 1;
+            }
+            return 0;
+        }))
+
+
     }
 })
-
 
 // Buscador
 
@@ -74,7 +86,7 @@ function bienvenida() {
         title: "Bienvenidos a Cocinas La Mágica",
         text: "A continuación encontrarás todos nuestros modelos de cocinas",
         imageUrl: "https://cocinaslamagica.com.ar/wp-content/uploads/2021/04/logo-color1.png",
-        confirmButtonText: "Continuar"
+        confirmButtonText: "Continuar",
     })
 }
 
@@ -202,7 +214,7 @@ function actualizarCarrito() {
 
 
 
-// Recupero el carrito del Locas Storage
+// Recupero el carrito del Local Storage
 function recuperar() {
     let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
 

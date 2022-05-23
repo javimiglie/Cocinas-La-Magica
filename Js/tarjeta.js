@@ -1,5 +1,3 @@
-/*
-
 const tarjeta = document.querySelector('#tarjeta');
 const btnAbrirFormulario = document.querySelector('#btn-abrir-formulario')
 const formulario = document.querySelector('#formulario-tarjeta')
@@ -11,10 +9,7 @@ const mesExpiracion = document.querySelector('#tarjeta .mes')
 const yearExpiracion = document.querySelector('#tarjeta .year');
 const ccv = document.querySelector('#tarjeta .ccv');
 const btnFinalizarCompra = document.querySelector('#btnFinalizarCompra');
-
-
-
-
+const btnCancelarCompra = document.querySelector('#btnCancelarCompra');
 
 
 
@@ -140,6 +135,36 @@ formulario.inputCCV.addEventListener('keyup', () => {
 
     ccv.textContent = formulario.inputCCV.value;
 });
+// Funcion para finalizar comprar y limpar Local Storage
+function finCompra() {
+    btnFinalizarCompra.addEventListener(`click`, (e) => {
+        e.preventDefault(e);
+        Swal.fire({
+            title: "Gracias!",
+            text: "Su compra ha sido exitosa",
+            icon: "success"
+        }).then(() => {
+            location.href = "../index.html"
+        })
+        localStorage.clear()
+    })
+}
 
+//Función para cancelar compra
 
-*/
+function cancelarCompra() {
+    btnCancelarCompra.addEventListener(`click`, (e) => {
+        e.preventDefault(e);
+        Swal.fire({
+            title: "Su compra ha sido cancelada",
+            icon: "error"
+        }).then(() => {
+            location.href = "../index.html"
+        })
+    })
+}
+
+// Llamado de funciones
+
+finCompra();
+cancelarCompra();

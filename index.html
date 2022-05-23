@@ -17,6 +17,8 @@
 
 <body>
     <header>
+        <img class="logo" src="./Media/Logo2.png" alt="Logo Empresa">
+
         <h1>Cocinas La Mágica</h1>
 
         <input id="search" type="text" class="input" placeholder="Buscar producto">
@@ -47,9 +49,24 @@
             </div>
             <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
             <div id="terminar" style="display: flex; justify-content: flex-end;"></div>
-            <button id="btnFinalizar" class="btn btn-primary position-relative" data-bs-toggle="modal" data-target="miModal2" href="./formulario.html">Comprar</button>
+            <button id="btnFinalizar" class="btn btn-primary position-relative" data-bs-toggle="modal" data-target="miModal2"> <a href="./Pages/formulario.html" class="btnLink"  > Comprar</a></button>
         </div>
     </div>
+    <footer>
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/ " target="blanck "> <img src="./Media/Fb.png" width="50px " alt=" "></a>
+            </li>
+            <li>
+                <a href="https://instagram.com/ " target="blanck "> <img src="./Media/Ig.png " alt=" "></a>
+            </li>
+            <li>
+                <a href="https://www.whatsapp.com/ " target="blank "> <img src="./Media/Wsp.png " alt=" "></a>
+            </li>
+        </ul>
+
+        <p>Cocinas La Mágica 2022 - Todos los derechos reservados - Realizado por Javier Miglierini</p>
+    </footer>
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
