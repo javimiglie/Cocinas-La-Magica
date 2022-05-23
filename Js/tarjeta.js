@@ -139,14 +139,26 @@ formulario.inputCCV.addEventListener('keyup', () => {
 function finCompra() {
     btnFinalizarCompra.addEventListener(`click`, (e) => {
         e.preventDefault(e);
-        Swal.fire({
-            title: "Gracias!",
-            text: "Su compra ha sido exitosa",
-            icon: "success"
-        }).then(() => {
-            location.href = "../index.html"
-        })
-        localStorage.clear()
+        if (inputNumero.value == 0 ||
+            formulario.nombre.value == 0 ||
+            formulario.mes.value == 0 ||
+            formulario.year.value == 0 ||
+            formulario.cvv.value == 0) {
+            Swal.fire({
+                title: "Debe completar todos los datos",
+                icon: "error"
+            })
+        } else {
+
+            Swal.fire({
+                title: "Gracias!",
+                text: "Su compra ha sido exitosa",
+                icon: "success"
+            }).then(() => {
+                location.href = "../index.html"
+            })
+            localStorage.clear()
+        }
     })
 }
 
